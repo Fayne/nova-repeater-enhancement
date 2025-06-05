@@ -14,3 +14,7 @@ Repeater::make('Components')
 ```
 
 详细可以参考以下[代码](/resources/js/components/FormField.vue#L44)
+
+### Todo list
+
+- [ ] Select组件需要做成searchable
