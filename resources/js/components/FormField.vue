@@ -41,7 +41,7 @@
             </Button>
 
             <template #menu>
-              <DropdownMenu class="py-1" width="auto">
+              <DropdownMenu class="py-1" :width="dropdownWidth">
                 <DropdownMenuItem
                     @click="() => addItem(repeatable.type)"
                     as="button"
@@ -199,6 +199,10 @@ export default {
 
         return {type: repeatable.type, fields}
       })
+    },
+
+    dropdownWidth() {
+      return this.field?.dropdownWidth || 'auto';
     },
   },
 }
