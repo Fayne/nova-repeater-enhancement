@@ -1,0 +1,14 @@
+let mix = require('laravel-mix')
+let NovaExtension = require('laravel-nova-devtool')
+let path = require('path')
+
+mix.extend('nova', new NovaExtension())
+
+mix
+  .setPublicPath('dist')
+  .js('resources/js/field.js', 'js')
+  .vue({ version: 3 })
+  .alias({ '@': path.join(__dirname, 'resources/js/') })
+  .css('resources/css/field.css', 'css')
+  .nova('mobilenowgroup/repeater')
+  .version()

@@ -1,0 +1,38 @@
+{
+    "name": "mobilenowgroup/nova-repeater-enhancement",
+    "description": "Nova Repeater field for fixing `Add item` width issue.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "MobileNowGroup"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "laravel/nova": "^5.0",
+        "laravel/nova-devtool": "^1.7"
+    },
+    "repositories": [
+        { "type": "composer", "url": "https://nova.laravel.com" }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MobileNowGroup\\Repeater\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MobileNowGroup\\Repeater\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
