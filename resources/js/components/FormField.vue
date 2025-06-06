@@ -37,7 +37,7 @@
                 leading-icon="plus-circle"
                 trailing-icon="chevron-down"
             >
-              {{ __('Add item') }}
+              {{ addItemText }}
             </Button>
 
             <template #menu>
@@ -204,6 +204,10 @@ export default {
     dropdownWidth() {
       return this.field?.dropdownWidth || 'auto';
     },
+
+    addItemText() {
+      return this.field?.addItemText || this.__('Add item');
+    }
   },
 }
 </script>
