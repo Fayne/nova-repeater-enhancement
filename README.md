@@ -18,4 +18,4 @@ Repeater::make('Components')
 ### Todo list
 
 - [x] `Add item` 可以在后端配置
-- [ ] Select组件需要做成searchable
+- [x] Select组件需要做成searchable

@@ -41,11 +41,24 @@
             </Button>
 
             <template #menu>
+              <!-- Search Input -->
+              <div v-if="isSearchable" class="border-b border-gray-200 dark:border-gray-600">
+                <input
+                    type="text"
+                    v-model="search"
+                    :placeholder="__('Search items...')"
+                    class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                    @input="performSearch"
+                    @click.stop
+                    @mousedown.stop
+                    @focus.stop
+                />
+              </div>
               <DropdownMenu class="py-1" :width="dropdownWidth">
                 <DropdownMenuItem
                     @click="() => addItem(repeatable.type)"
                     as="button"
-                    v-for="repeatable in currentField.repeatables"
+                    v-for="repeatable in filteredRepeatables"
                     class="space-x-2"
                 >
                   <span>
@@ -109,6 +122,7 @@ export default {
 
   data: () => ({
     valueMap: new WeakMap(),
+    search: '',
   }),
 
   beforeMount() {
@@ -183,6 +197,10 @@ export default {
       const item = this.value.splice(index, 1)
       this.value.splice(Math.min(this.value.length, index + 1), 0, item[0])
     },
+
+    performSearch(event) {
+      this.search = event.target.value;
+    },
   },
 
   computed: {
@@ -202,12 +220,36 @@ export default {
     },
 
     dropdownWidth() {
-      return this.field?.dropdownWidth || 'auto';
+      return this.currentField?.dropdownWidth || 'auto';
     },
 
     addItemText() {
-      return this.field?.addItemText || this.__('Add item');
-    }
+      return this.currentField?.addItemText || this.__('Add item');
+    },
+
+    isSearchable() {
+      return this.currentField?.searchable
+    },
+
+    /**
+     * Return the field options filtered by the search string.
+     *
+     * @returns {Object[]}
+     */
+    filteredRepeatables() {
+      return this.currentField.repeatables.filter(option => {
+        if (!this.search) {
+          return option;
+        }
+
+        return (
+            option.label
+                .toString()
+                .toLowerCase()
+                .indexOf(this.search.toLowerCase()) > -1
+        )
+      })
+    },
   },
 }
 </script>
