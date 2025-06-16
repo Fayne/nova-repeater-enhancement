@@ -19,3 +19,4 @@ Repeater::make('Components')
 
 - [x] `Add item` 可以在后端配置
 - [x] Select组件需要做成searchable
+- [x] 支持动态Repeatable 类
